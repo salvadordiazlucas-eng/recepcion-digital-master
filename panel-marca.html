@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Control - Marca Propia</title>
+    <style>
+        *, *::before, *::after { box-sizing: border-box; }
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f8fafc;
+            color: #1e293b;
+        }
+        header {
+            background: #1e293b;
+            color: #ffffff;
+            padding: 1.5rem 2rem;
+            border-bottom: 4px solid #3b82f6;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        header h1 { margin: 0; font-size: 1.3rem; color: #3b82f6; }
+        header p { margin: 0; font-size: 0.85rem; color: #94a3b8; }
+        .badge-brand {
+            background: #334155;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            color: #cbd5e1;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+            display: grid;
+            gap: 2rem;
+        }
+        .card {
+            background: #ffffff;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e2e8f0;
+        }
+        h3 { margin-top: 0; font-size: 1.1rem; color: #0f172a; border-bottom: 2px solid #f1f5f9; padding-bottom: 10px; }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+        th, td {
+            text-align: left;
+            padding: 12px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        th {
+            background: #f1f5f9;
+            color: #475569;
+            font-weight: 600;
+        }
+        .btn {
+            padding: 6px 12px;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        .btn-approve { background: #10b981; color: white; }
+        .btn-approve:hover { background: #059669; }
+        .btn-review { background: #3b82f6; color: white; }
+        .btn-review:hover { background: #2563eb; }
+        .alert-box {
+            background: #eff6ff;
+            border-left: 4px solid #3b82f6;
+            padding: 1rem;
+            font-size: 0.85rem;
+            color: #1e40af;
+            border-radius: 0 6px 6px 0;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div>
+            <h1>🛡️ Panel de Gestión - Marca Propia</h1>
+            <p>Supervisión de distribuidores B2B y solicitudes de modificación de red</p>
+        </div>
+        <div class="badge-brand">Marca Activa: [Nombre de tu Marca]</div>
+    </header>
+
+    <div class="container">
+        <!-- Alerta de seguridad operativa -->
+        <div class="alert-box">
+            <strong>ℹ️ Control de Red:</strong> Los distribuidores B2B no pueden alterar ni dar de baja fichas B2C de forma autónoma. Cualquier solicitud de cambio crítico o baja debe ser validada y ejecutada desde este panel de Marca Propia.
+        </div>
+
+        <!-- Sección 1: Validaciones de nuevos B2B -->
+        <div class="card">
+            <h3>📥 Solicitudes Pendientes de Alta B2B (Verificación IAE)</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Profesional / Empresa</th>
+                        <th>NIF / CIF</th>
+                        <th>Documento IAE</th>
+                        <th>Acción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Soluciones Digitales Levante S.L.</strong></td>
+                        <td>B12345678</td>
+                        <td><a href="#" style="color: #3b82f6; text-decoration: none;">📄 Ver_Justificante.pdf</a></td>
+                        <td>
+                            <button class="btn btn-approve" onclick="alert('IAE validado. Código B2B generado y enviado por correo.');">Validar y Otorgar Código B2B</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Sección 2: Peticiones de Modificación / Bajas de B2C solicitadas por B2B -->
+        <div class="card">
+            <h3>⚙️ Peticiones de Modificación / Bajas (Enviadas por la red B2B)</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Distribuidor (B2B)</th>
+                        <th>Cliente Final (B2C afectado)</th>
+                        <th>Petición Solicitada</th>
+                        <th>Acción de Marca</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Soluciones Digitales Levante</td>
+                        <td>Restaurante El Puerto</td>
+                        <td><span style="color: #ef4444; font-weight: bold;">Solicitud de Baja</span></td>
+                        <td>
+                            <button class="btn btn-review" onclick="alert('Petición revisada y baja procesada en el sistema.');">Procesar Baja</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</body>
+</html>

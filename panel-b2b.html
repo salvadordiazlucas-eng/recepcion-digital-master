@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Distribuidor - B2B</title>
+    <style>
+        *, *::before, *::after { box-sizing: border-box; }
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f8fafc;
+            color: #1e293b;
+        }
+        header {
+            background: #0f172a;
+            color: #ffffff;
+            padding: 1.5rem 2rem;
+            border-bottom: 4px solid #3b82f6;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        header h1 { margin: 0; font-size: 1.3rem; color: #3b82f6; }
+        header p { margin: 0; font-size: 0.85rem; color: #94a3b8; }
+        .badge-b2b {
+            background: #1e293b;
+            border: 1px solid #3b82f6;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            color: #3b82f6;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+            display: grid;
+            gap: 2rem;
+        }
+        .card {
+            background: #ffffff;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e2e8f0;
+        }
+        h3 { margin-top: 0; font-size: 1.1rem; color: #0f172a; border-bottom: 2px solid #f1f5f9; padding-bottom: 10px; }
+        h4 { margin: 1.5rem 0 0.8rem 0; font-size: 0.95rem; color: #334155; border-left: 3px solid #3b82f6; padding-left: 8px; }
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 1rem; }
+        .form-group { display: flex; flex-direction: column; gap: 0.4rem; grid-column: span 2; }
+        .form-group.full { grid-column: span 4; }
+        .form-group.col-1 { grid-column: span 1; }
+        .form-group.col-2 { grid-column: span 2; }
+        .form-group.col-3 { grid-column: span 3; }
+        label { font-size: 0.85rem; font-weight: 600; color: #475569; }
+        input, select, textarea {
+            padding: 10px 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            font-family: inherit;
+            width: 100%;
+        }
+        input[type="file"] { padding: 8px; background: #f8fafc; cursor: pointer; }
+        .btn-submit {
+            background: #3b82f6;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 1rem;
+            grid-column: span 4;
+            transition: background 0.2s;
+            margin-top: 1rem;
+        }
+        .btn-submit:hover { background: #2563eb; }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+        th, td {
+            text-align: left;
+            padding: 12px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        th { background: #f1f5f9; color: #475569; font-weight: 600; }
+        .notice-restriction {
+            background: #fef2f2;
+            border-left: 4px solid #ef4444;
+            padding: 1rem;
+            font-size: 0.85rem;
+            color: #991b1b;
+            border-radius: 0 6px 6px 0;
+            margin-bottom: 1rem;
+        }
+        .btn-action-disabled {
+            background: #e2e8f0;
+            color: #94a3b8;
+            border: none;
+            padding: 6px 10px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div>
+            <h1>🛠️ Panel de Distribuidor Profesional (B2B)</h1>
+            <p>Gestión de altas B2C y control de cartera de clientes</p>
+        </div>
+        <div class="badge-b2b">Mi Código B2B: B2B-7892</div>
+    </header>
+
+    <div class="container">
+        
+        <!-- Aviso de la restricción de seguridad -->
+        <div class="notice-restriction">
+            <strong>🔒 Nota Operativa:</strong> Alta de clientes B2C con detalle geográfico completo (empresa y establecimiento). <strong>No es posible editar ni dar de baja fichas directamente</strong>; debe solicitarse a la Marca Propia.
+        </div>
+
+        <!-- Formulario para dar de alta a un nuevo B2C con Ficha Completa -->
+        <div class="card">
+            <h3>➕ Alta de Nuevo Cliente Final (Ficha B2C Completa y Geolocalizada)</h3>
+            <form onsubmit="event.preventDefault(); alert('Ficha B2C registrada con sus datos completos de empresa y local.');">
+                <div class="form-grid">
+                    
+                    <div class="form-group full" style="background: #f8fafc; padding: 12px; border-radius: 6px; border: 1px dashed #cbd5e1;">
+                        <label>🔗 ¿Es una nueva sede de un cliente ya existente?</label>
+                        <select id="selectSedeMatriz">
+                            <option value="nuevo">-- No, es un cliente completamente nuevo --</option>
+                            <option value="matriz-1">Sí, clonar configuración y datos fiscales de: Cafetería Central</option>
+                        </select>
+                        <small style="color: #64748b; margin-top: 4px; display: block;">Heredará la estructura y datos fiscales, permitiendo definir la ubicación y contacto específicos para esta nueva sede.</small>
+                    </div>
+
+                    <!-- BLOQUE 1: DATOS DE LA EMPRESA / FACTURACIÓN -->
+                    <div class="form-group full">
+                        <h4>🏢 Datos de la Empresa (Facturación y Administración)</h4>
+                    </div>
+
+                    <div class="form-group col-2">
+                        <label>Razón Social / Nombre Fiscal:</label>
+                        <input type="text" required placeholder="Ej. Inversiones Hosteleras S.L.">
+                    </div>
+
+                    <div class="form-group col-2">
+                        <label>NIF / CIF de la Empresa:</label>
+                        <input type="text" required placeholder="Ej. B88123456">
+                    </div>
+
+                    <div class="form-group full">
+                        <label>Dirección Fiscal (Calle, número, piso...):</label>
+                        <input type="text" required placeholder="Calle Mayor 45, 1ª Planta">
+                    </div>
+
+                    <div class="form-group col-1">
+                        <label>Código Postal:</label>
+                        <input type="text" required placeholder="28013">
+                    </div>
+
+                    <div class="form-group col-1">
+                        <label>Población / Ciudad:</label>
+                        <input type="text" required placeholder="Madrid">
+                    </div>
+
+                    <div class="form-group col-1">
+                        <label>Provincia:</label>
+                        <input type="text" required placeholder="Madrid">
+                    </div>
+
+                    <div class="form-group col-1">
+                        <label>País:</label>
+                        <input type="text" required value="España" placeholder="España">
+                    </div>
+
+                    <div class="form-group col-2">
+                        <label>Sector / Actividad:</label>
+                        <input type="text" required placeholder="Ej. Hostelería / Restauración">
+                    </div>
+
+                    <div class="form-group col-2">
+                        <label>Teléfono de la Empresa (Facturación):</label>
+                        <input type="text" required placeholder="Ej. +34 910 000 000">
+                    </div>
+
+                    <div class="form-group col-2">
+                        <label>Persona de Contacto (Administración):</label>
+                        <input type="text" required placeholder="Ej. María López">
+                    </div>
+
+                    <div class="form-group col-2">
+                        <label>Correo Electrónico de Facturación:</label>
+                        <input type="email" required placeholder="facturacion@empresa.com">
+                    </div>
+
+
+                    <!-- BLOQUE 2: DATOS DEL LOCAL / ESTABLECIMIENTO -->
+                    <div class="form-group full">
+                        <h4>📍 Datos del Local / Establecimiento (Operativo)</h4>
+                    </div>
+
+                    <div class="form-group col-2">
+                        <label>Nombre Comercial del Local:</label>
+                        <input type="text" required placeholder="Ej. Cafetería Central - Zona Norte">
+                    </div>
+
+                    <div class="form-group col-2">
+                        <label>Teléfono del Local:</label>
+                        <input type="text" required placeholder="Ej. +34 911 222 333">
+                    </div>
+
+                    <div class="form-group full">
+                        <label>Dirección Física del Local (Calle, número...):</label>
+                        <input type="text" required placeholder="Av. de los Poblados 89, Local 4">
+                    </div>
+
+                    <div class="form-group col-1">
+                        <label>Código Postal:</label>
+                        <input type="text" required placeholder="28041">
+                    </div>
+
+                    <div class="form-group col-1">
+                        <label>Población / Ciudad:</label>
+                        <input type="text" required placeholder="Madrid">
+                    </div>
+
+                    <div class="form-group col-1">
+                        <label>Provincia:</label>
+                        <input type="text" required placeholder="Madrid">
+                    </div>
+
+                    <div class="form-group col-1">
+                        <label>País:</label>
+                        <input type="text" required value="España" placeholder="España">
+                    </div>
+
+                    <div class="form-group col-2">
+                        <label>Persona Responsable / Encargado:</label>
+                        <input type="text" required placeholder="Ej. Carlos Ruiz">
+                    </div>
+
+                    <div class="form-group col-2">
+                        <label>Correo Electrónico del Local:</label>
+                        <input type="email" required placeholder="norte@elrincon.com">
+                    </div>
+
+                    <div class="form-group full">
+                        <label>Logotipo del Establecimiento B2C (Archivo de imagen):</label>
+                        <input type="file" required accept=".png, .jpg, .jpeg">
+                        <small style="color: #64748b;">Imagen corporativa para la marca blanca de este local.</small>
+                    </div>
+
+                    <button type="submit" class="btn-submit">Registrar Ficha B2C Completa y Geolocalizada</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Listado de clientes B2C del B2B -->
+        <div class="card">
+            <h3>📋 Mis Clientes B2C Actuales</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Establecimiento / Local</th>
+                        <th>Ubicación (Local)</th>
+                        <th>Empresa (Fiscal)</th>
+                        <th>Estado</th>
+                        <th>Gestión / Modificación</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Cafetería Central</strong></td>
+                        <td>Madrid (Madrid)</td>
+                        <td>Inversiones Hosteleras S.L.</td>
+                        <td><span style="color: #10b981; font-weight: bold;">● Activo</span></td>
+                        <td>
+                            <button class="btn-action-disabled" title="Restringido">Editar / Baja (Solicitar a Marca)</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+</body>
+</html>

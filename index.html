@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel Máster - Recepción Digital Inteligente</title>
+    <style>
+        *, *::before, *::after { box-sizing: border-box; }
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f6f9;
+            color: #333333;
+        }
+        header {
+            background: #1e293b;
+            color: #ffffff;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 4px solid #3b82f6;
+        }
+        .brand-master h1 {
+            margin: 0;
+            font-size: 1.25rem;
+            color: #3b82f6;
+            letter-spacing: 0.5px;
+        }
+        .brand-master p {
+            margin: 0;
+            font-size: 0.85rem;
+            color: #94a3b8;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+        }
+        .card {
+            background: #ffffff;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+            margin-bottom: 1.5rem;
+        }
+        h2 {
+            margin-top: 0;
+            font-size: 1.2rem;
+            color: #1e293b;
+            border-bottom: 2px solid #f1f5f9;
+            padding-bottom: 10px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+            font-size: 0.95rem;
+        }
+        th {
+            background-color: #f8fafc;
+            color: #475569;
+            font-weight: 600;
+        }
+        .badge {
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: bold;
+        }
+        .badge-active { background: #dcfce7; color: #166534; }
+        .badge-suspended { background: #fee2e2; color: #991b1b; }
+        .btn-toggle {
+            padding: 6px 12px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.8rem;
+        }
+        .btn-on { background: #fee2e2; color: #991b1b; }
+        .btn-off { background: #dcfce7; color: #166534; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="brand-master">
+            <h1 id="master-brand-title">⚙️ [CONFIGURAR LOGO / MARCA BLANCA]</h1>
+            <p id="master-brand-slogan">Panel de Control Máster - Gestión de Canales y Licencias</p>
+        </div>
+        <div>
+            <span style="background: #3b82f6; padding: 6px 12px; border-radius: 6px; font-size: 0.85rem; font-weight: bold;">Superadmin</span>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="card">
+            <h2>Gestión de Clientes B2B y Establecimientos B2C (Independientes)</h2>
+            <p style="color: #64748b; font-size: 0.9rem;">Desde aquí puedes activar o suspender cuentas de forma granular. Si un B2B cae, puedes mantener operativo el servicio del B2C si cumple con sus condiciones.</p>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nivel B2B (Distribuidor / Agencia)</th>
+                        <th>Nivel B2C (Establecimiento Final)</th>
+                        <th>Estado B2B</th>
+                        <th>Estado B2C (Independiente)</th>
+                        <th>Acción B2C</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Agencia Levante Digital</strong></td>
+                        <td>Restaurante El Mirador</td>
+                        <td><span class="badge badge-active">Activo</span></td>
+                        <td><span class="badge badge-active" id="status-b2c-1">Activo (Operativo)</span></td>
+                        <td>
+                            <button class="btn-toggle btn-on" onclick="toggleB2C('1')">Suspender B2C</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Soluciones Murcia B2B</strong><br><small style="color:red;">(Suspendido por impago global)</small></td>
+                        <td>Clínica Dental Sonrisas</td>
+                        <td><span class="badge badge-suspended">Suspendido</span></td>
+                        <td><span class="badge badge-active" id="status-b2c-2">Activo (Subrogado / Pagado)</span></td>
+                        <td>
+                            <button class="btn-toggle btn-on" onclick="toggleB2C('2')">Suspender B2C</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        function toggleB2C(id) {
+            const statusElement = document.getElementById('status-b2c-' + id);
+            if (statusElement.classList.contains('badge-active')) {
+                statusElement.classList.remove('badge-active');
+                statusElement.classList.add('badge-suspended');
+                statusElement.innerText = 'Suspendido';
+            } else {
+                statusElement.classList.remove('badge-suspended');
+                statusElement.classList.add('badge-active');
+                statusElement.innerText = 'Activo (Operativo)';
+            }
+        }
+    </script>
+</body>
+</html>

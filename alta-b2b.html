@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solicitud de Alta Profesional - B2B</title>
+    <style>
+        *, *::before, *::after { box-sizing: border-box; }
+        body {
+            margin: 0;
+            padding: 2rem;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f1f5f9;
+            color: #1e293b;
+        }
+        .form-container {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 2.5rem;
+            max-width: 650px;
+            margin: 0 auto;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            border-top: 5px solid #0f172a;
+        }
+        h2 { margin-top: 0; font-size: 1.4rem; color: #0f172a; border-bottom: 2px solid #f1f5f9; padding-bottom: 10px; }
+        p.subtitle { font-size: 0.9rem; color: #64748b; margin-bottom: 1.5rem; }
+        .form-grid { display: grid; gap: 1.2rem; }
+        .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+        label { font-size: 0.85rem; font-weight: 600; color: #475569; }
+        input, select {
+            padding: 10px 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            font-size: 0.95rem;
+        }
+        input[type="file"] {
+            padding: 8px;
+            background: #f8fafc;
+            cursor: pointer;
+        }
+        input:focus, select:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+        .info-box {
+            background: #f8fafc;
+            border-left: 4px solid #3b82f6;
+            padding: 1rem;
+            font-size: 0.85rem;
+            color: #475569;
+            border-radius: 0 6px 6px 0;
+            margin-top: 0.5rem;
+        }
+        .btn-submit {
+            background: #0f172a;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-top: 1rem;
+            transition: background 0.2s;
+        }
+        .btn-submit:hover { background: #1e293b; }
+    </style>
+</head>
+<body>
+
+    <div class="form-container">
+        <h2>📝 Registro y Verificación Profesional (B2B)</h2>
+        <p class="subtitle">Complete sus datos fiscales y adjunte su justificante de actividad para solicitar el acceso a la plataforma.</p>
+        
+        <form onsubmit="event.preventDefault(); alert('Solicitud y documento adjunto enviados con éxito. Procederemos a su verificación.');">
+            <div class="form-grid">
+                <div class="form-group">
+                    <label>Razón Social / Nombre del Profesional:</label>
+                    <input type="text" required placeholder="Ej. Soluciones Digitales Levante S.L.">
+                </div>
+
+                <div class="form-group">
+                    <label>NIF / CIF:</label>
+                    <input type="text" required placeholder="Ej. B12345678">
+                </div>
+
+                <div class="form-group">
+                    <label>Adjuntar Documento acreditativo (Modelo de IAE / Certificado):</label>
+                    <input type="file" required accept=".pdf, .jpg, .png">
+                    <small style="color: #64748b; font-size: 0.75rem;">Formatos aceptados: PDF o imagen (máx. 5MB).</small>
+                </div>
+
+                <div class="form-group">
+                    <label>Persona de Contacto y Correo Electrónico:</label>
+                    <input type="email" required placeholder="contacto@tuempresa.com">
+                </div>
+
+                <div class="info-box">
+                    <strong>🔒 Protocolo de Seguridad:</strong> Tras la comprobación manual del archivo adjunto, recibirá en este correo su <strong>Código B2B oficial</strong>, las credenciales de acceso a la Demo y el manual de uso.
+                </div>
+
+                <button type="submit" class="btn-submit">Enviar Solicitud de Alta Profesional</button>
+            </div>
+        </form>
+    </div>
+
+</body>
+</html>
