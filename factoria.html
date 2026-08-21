@@ -3,27 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Constructor Web - Factoría de Bloques B2C</title>
+    <title>Constructor Web Real - Factoría de Bloques B2C</title>
     <style>
         *, *::before, *::after { box-sizing: border-box; }
-        body { margin: 0; padding: 0; font-family: 'Segoe UI', Roboto, sans-serif; background-color: #f8fafc; color: #1e293b; display: flex; height: 100vh; overflow: hidden; }
-        .sidebar { width: 360px; background: #0f172a; color: #fff; padding: 1.5rem; display: flex; flex-direction: column; border-right: 1px solid #334155; overflow-y: auto; }
+        body { margin: 0; padding: 0; font-family: 'Segoe UI', Roboto, sans-serif; background-color: #f1f5f9; color: #1e293b; display: flex; height: 100vh; overflow: hidden; }
+        
+        /* Barra Lateral */
+        .sidebar { width: 380px; background: #0f172a; color: #fff; padding: 1.5rem; display: flex; flex-direction: column; border-right: 1px solid #334155; overflow-y: auto; }
         .sidebar h2 { font-size: 1.1rem; color: #3b82f6; margin-top: 0; }
-        .sidebar p { font-size: 0.85rem; color: #94a3b8; margin-bottom: 1.5rem; }
+        .sidebar p { font-size: 0.85rem; color: #94a3b8; margin-bottom: 1rem; }
+        
+        .theme-selector { background: #1e293b; border: 1px solid #334155; padding: 10px; border-radius: 8px; margin-bottom: 1.5rem; }
+        .theme-selector label { font-size: 0.8rem; color: #94a3b8; display: block; margin-bottom: 5px; }
+        .theme-selector select { width: 100%; padding: 8px; background: #0f172a; color: white; border: 1px solid #475569; border-radius: 6px; font-size: 0.9rem; }
+
         .block-item { background: #1e293b; border: 1px solid #334155; padding: 12px; border-radius: 8px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; transition: background 0.2s; }
         .block-item:hover { background: #334155; }
         .block-title { font-size: 0.9rem; font-weight: 500; }
         .btn-add { background: #3b82f6; color: white; border: none; padding: 6px 10px; border-radius: 4px; cursor: pointer; font-size: 0.8rem; }
         .btn-add:hover { background: #2563eb; }
         
+        /* Área Principal / Lienzo */
         .main-content { flex: 1; padding: 2rem; display: flex; flex-direction: column; overflow-y: auto; }
         .main-content h1 { font-size: 1.4rem; color: #0f172a; margin-top: 0; }
         .canvas { flex: 1; background: #ffffff; border: 2px dashed #cbd5e1; border-radius: 10px; padding: 1.5rem; display: flex; flex-direction: column; gap: 1rem; min-height: 350px; margin-bottom: 1.5rem; overflow-y: auto; }
         .canvas-placeholder { color: #94a3b8; text-align: center; margin: auto; font-style: italic; }
-        .canvas-block { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1rem; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 4px rgba(0,0,0,0.02); }
-        .canvas-block span { font-weight: 600; color: #1e293b; font-size: 0.9rem; }
-        .btn-remove { background: #ef4444; color: white; border: none; padding: 4px 8px; border-radius: 4px; cursor: pointer; font-size: 0.75rem; }
         
+        .canvas-block { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1rem; box-shadow: 0 2px 4px rgba(0,0,0,0.02); }
+        .canvas-block-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.8rem; }
+        .canvas-block-header span { font-weight: 600; color: #1e293b; font-size: 0.9rem; }
+        
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .form-group { margin-bottom: 8px; }
+        .form-group.full { grid-column: span 2; }
+        .form-group label { font-size: 0.75rem; font-weight: 700; color: #64748b; display: block; margin-bottom: 3px; }
+        .form-group input, .form-group textarea { width: 100%; padding: 7px; border: 1px solid #cbd5e1; border-radius: 4px; font-size: 0.85rem; background: #fff; }
+        .form-group textarea { resize: vertical; height: 50px; }
+
+        .btn-remove { background: #ef4444; color: white; border: none; padding: 4px 8px; border-radius: 4px; cursor: pointer; font-size: 0.75rem; }
         .btn-compile { background: #10b981; color: white; border: none; padding: 14px; border-radius: 8px; font-weight: bold; font-size: 1rem; cursor: pointer; text-align: center; width: 100%; transition: background 0.2s; }
         .btn-compile:hover { background: #059669; }
         .btn-back { display: inline-block; margin-bottom: 1rem; color: #64748b; text-decoration: none; font-size: 0.85rem; }
@@ -33,9 +50,19 @@
 <body>
 
     <div class="sidebar">
-        <h2>🧱 Módulos Web Reales</h2>
-        <p>Añade los componentes funcionales para construir la página web del establecimiento.</p>
+        <h2>🧱 Módulos y Editor</h2>
+        <p>Elige la paleta de colores y añade bloques configurables al lienzo.</p>
         
+        <div class="theme-selector">
+            <label>🎨 Tema Corporativo / Pantones:</label>
+            <select id="themeColor">
+                <option value="exec">Azul Ejecutivo ( #0f172a / #3b82f6 )</option>
+                <option value="eco">Verde Eco-Salud ( #064e3b / #10b981 )</option>
+                <option value="minimal">Grafito Minimalista ( #18181b / #71717a )</option>
+                <option value="wine">Borgoña Elegante ( #4c0519 / #e11d48 )</option>
+            </select>
+        </div>
+
         <div class="block-item" onclick="addModule('identidad')">
             <span class="block-title">🏷️ 1. Identidad y Cabecera</span>
             <button class="btn-add">+ Añadir</button>
@@ -45,7 +72,7 @@
             <button class="btn-add">+ Añadir</button>
         </div>
         <div class="block-item" onclick="addModule('servicios')">
-            <span class="block-title">📋 3. Carta / Parrilla de Servicios</span>
+            <span class="block-title">📋 3. Carta / Servicios</span>
             <button class="btn-add">+ Añadir</button>
         </div>
         <div class="block-item" onclick="addModule('contacto')">
@@ -56,21 +83,31 @@
 
     <div class="main-content">
         <a href="index.html" class="btn-back">← Volver al Índice Maestro</a>
-        <h1>Constructor Web Visual por Módulos</h1>
-        <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 1.5rem;">Ensambla la estructura y genera una web completa y funcional con un solo clic.</p>
+        <h1>Constructor Web Visual con Editor de Contenido</h1>
+        <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 1.5rem;">Personaliza los campos de cada módulo y compila una página web profesional lista para producción.</p>
 
         <div class="canvas" id="canvas">
-            <div class="canvas-placeholder" id="placeholder">Añade módulos desde la barra lateral para estructurar la web...</div>
+            <div class="canvas-placeholder" id="placeholder">Añade módulos desde la barra lateral para configurar el contenido...</div>
         </div>
 
-        <button class="btn-compile" onclick="compileRealWebsite()">⚡ Compilar y Descargar Web B2C Completa (.html)</button>
+        <button class="btn-compile" onclick="compileCustomWebsite()">⚡ Compilar y Descargar Web B2C Personalizada (.html)</button>
     </div>
 
     <script>
         let modules = [];
 
         function addModule(type) {
-            modules.push(type);
+            let data = {};
+            if (type === 'identidad') {
+                data = { title: 'Cafetería & Negocio Central', subtitle: 'Su espacio profesional digitalizado y listo para clientes' };
+            } else if (type === 'chat') {
+                data = { title: 'Asistente Virtual de Recepción', welcome: '¡Hola! ¿En qué podemos ayudarle hoy en nuestro establecimiento?' };
+            } else if (type === 'servicios') {
+                data = { s1Name: 'Servicio Principal', s1Desc: 'Descripción detallada de la oferta o producto estrella.', s2Name: 'Servicio Adicional', s2Desc: 'Atención personalizada y gestión rápida adaptada a su local.' };
+            } else if (type === 'contacto') {
+                data = { address: 'Av. Principal 45, Local 2 (Madrid)', hours: 'Lunes a Domingo: 09:00 - 22:00', phone: '+34 911 000 111' };
+            }
+            modules.push({ type, data });
             renderCanvas();
         }
 
@@ -79,41 +116,71 @@
             renderCanvas();
         }
 
+        function updateData(index, field, value) {
+            modules[index].data[field] = value;
+        }
+
         function renderCanvas() {
             const canvas = document.getElementById('canvas');
             if (modules.length === 0) {
-                canvas.innerHTML = '<div class="canvas-placeholder" id="placeholder">Añade módulos desde la barra lateral para estructurar la web...</div>';
+                canvas.innerHTML = '<div class="canvas-placeholder" id="placeholder">Añade módulos desde la barra lateral para configurar el contenido...</div>';
                 return;
             }
 
             canvas.innerHTML = '';
             modules.forEach((mod, index) => {
-                const names = {
-                    'identidad': '🏷️ Módulo de Identidad y Cabecera',
-                    'chat': '💬 Módulo de Asistente Conversacional',
-                    'servicios': '📋 Módulo de Carta / Parrilla de Servicios',
-                    'contacto': '📍 Módulo de Contacto y Ubicación'
-                };
                 const div = document.createElement('div');
                 div.className = 'canvas-block';
+                
+                let fieldsHtml = '';
+                if (mod.type === 'identidad') {
+                    fieldsHtml = `
+                        <div class="form-group"><label>Nombre Comercial</label><input type="text" value="${mod.data.title}" oninput="updateData(${index}, 'title', this.value)"></div>
+                        <div class="form-group"><label>Eslogan / Subtítulo</label><input type="text" value="${mod.data.subtitle}" oninput="updateData(${index}, 'subtitle', this.value)"></div>
+                    `;
+                } else if (mod.type === 'chat') {
+                    fieldsHtml = `
+                        <div class="form-group"><label>Título del Chat</label><input type="text" value="${mod.data.title}" oninput="updateData(${index}, 'title', this.value)"></div>
+                        <div class="form-group"><label>Mensaje de Bienvenida</label><input type="text" value="${mod.data.welcome}" oninput="updateData(${index}, 'welcome', this.value)"></div>
+                    `;
+                } else if (mod.type === 'servicios') {
+                    fieldsHtml = `
+                        <div class="form-group"><label>Nombre Servicio 1</label><input type="text" value="${mod.data.s1Name}" oninput="updateData(${index}, 's1Name', this.value)"></div>
+                        <div class="form-group"><label>Descripción S1</label><input type="text" value="${mod.data.s1Desc}" oninput="updateData(${index}, 's1Desc', this.value)"></div>
+                        <div class="form-group"><label>Nombre Servicio 2</label><input type="text" value="${mod.data.s2Name}" oninput="updateData(${index}, 's2Name', this.value)"></div>
+                        <div class="form-group"><label>Descripción S2</label><input type="text" value="${mod.data.s2Desc}" oninput="updateData(${index}, 's2Desc', this.value)"></div>
+                    `;
+                } else if (mod.type === 'contacto') {
+                    fieldsHtml = `
+                        <div class="form-group"><label>Dirección Física</label><input type="text" value="${mod.data.address}" oninput="updateData(${index}, 'address', this.value)"></div>
+                        <div class="form-group"><label>Horario</label><input type="text" value="${mod.data.hours}" oninput="updateData(${index}, 'hours', this.value)"></div>
+                        <div class="form-group full"><label>Teléfono de Contacto</label><input type="text" value="${mod.data.phone}" oninput="updateData(${index}, 'phone', this.value)"></div>
+                    `;
+                }
+
                 div.innerHTML = `
-                    <div>
-                        <span style="color: #3b82f6; font-size: 0.75rem; display: block; margin-bottom: 2px;">SECCIÓN 0${index + 1}</span>
-                        <span>${names[mod]}</span>
+                    <div class="canvas-block-header">
+                        <span style="color: #3b82f6;">SECCIÓN 0${index + 1}: ${mod.type.toUpperCase()}</span>
+                        <button class="btn-remove" onclick="removeModule(${index})">Eliminar Módulo</button>
                     </div>
-                    <button class="btn-remove" onclick="removeModule(${index})">Quitar</button>
+                    <div class="form-grid">${fieldsHtml}</div>
                 `;
                 canvas.appendChild(div);
             });
         }
 
-        function compileRealWebsite() {
+        function compileCustomWebsite() {
             if (modules.length === 0) {
-                alert('Añade al menos un módulo para compilar la web.');
+                alert('Añade y configura al menos un módulo para compilar la web.');
                 return;
             }
 
-            // Código HTML base de la web generada con diseño profesional responsive
+            const theme = document.getElementById('themeColor').value;
+            let primary = '#3b82f6', bgHeader = '#0f172a';
+            if (theme === 'eco') { primary = '#10b981'; bgHeader = '#064e3b'; }
+            else if (theme === 'minimal') { primary = '#71717a'; bgHeader = '#18181b'; }
+            else if (theme === 'wine') { primary = '#e11d48'; bgHeader = '#4c0519'; }
+
             let html = `<!DOCTYPE html>
 <html lang="es">
 <head>
@@ -125,78 +192,71 @@
         body { font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; background-color: #f8fafc; color: #1e293b; line-height: 1.6; }
         .container { max-width: 900px; margin: 0 auto; padding: 2rem 1rem; display: flex; flex-direction: column; gap: 2rem; }
         
-        /* Estilos Módulo Identidad */
-        .web-header { background: #0f172a; color: white; padding: 3rem 1.5rem; text-align: center; border-bottom: 4px solid #3b82f6; }
-        .web-header h1 { margin: 0; font-size: 2rem; color: #3b82f6; }
+        .web-header { background: ${bgHeader}; color: white; padding: 3rem 1.5rem; text-align: center; border-bottom: 4px solid ${primary}; }
+        .web-header h1 { margin: 0; font-size: 2rem; color: ${primary}; }
         .web-header p { margin: 0.5rem 0 0 0; color: #94a3b8; font-size: 1.1rem; }
 
-        /* Estilos Tarjetas Generales */
         .card-section { background: #ffffff; padding: 2rem; border-radius: 12px; border: 1px solid #e2e8f0; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02); }
         .card-section h2 { margin-top: 0; color: #0f172a; font-size: 1.3rem; border-bottom: 2px solid #f1f5f9; padding-bottom: 10px; }
 
-        /* Estilos Chat */
         .chat-box { background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 8px; padding: 1rem; height: 180px; display: flex; flex-direction: column; justify-content: flex-end; margin-bottom: 1rem; }
         .chat-msg { background: #e2e8f0; padding: 8px 12px; border-radius: 6px; font-size: 0.9rem; max-width: 80%; }
         .chat-input-area { display: flex; gap: 10px; }
         .chat-input-area input { flex: 1; padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px; }
-        .chat-input-area button { background: #3b82f6; color: white; border: none; padding: 10px 16px; border-radius: 6px; cursor: pointer; font-weight: bold; }
+        .chat-input-area button { background: ${primary}; color: white; border: none; padding: 10px 16px; border-radius: 6px; cursor: pointer; font-weight: bold; }
 
-        /* Estilos Servicios */
         .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; margin-top: 1rem; }
         .service-item { background: #f8fafc; border: 1px solid #e2e8f0; padding: 1rem; border-radius: 8px; }
         .service-item h4 { margin: 0 0 0.5rem 0; color: #0f172a; }
         .service-item p { margin: 0; font-size: 0.85rem; color: #64748b; }
 
-        /* Estilos Contacto */
         .contact-info { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; font-size: 0.95rem; }
     </style>
 </head>
 <body>`;
 
-            // Inyectar bloques secuencialmente según el orden del lienzo
             modules.forEach(mod => {
-                if (mod === 'identidad') {
+                if (mod.type === 'identidad') {
                     html += `
     <header class="web-header">
-        <h1>Cafetería & Negocio Central</h1>
-        <p>Su espacio profesional digitalizado y listo para clientes</p>
+        <h1>${mod.data.title}</h1>
+        <p>${mod.data.subtitle}</p>
     </header>
     <div class="container">`;
-                } else if (mod === 'chat') {
+                } else if (mod.type === 'chat') {
                     html += `
         <section class="card-section">
-            <h2>💬 Asistente Virtual de Recepción</h2>
-            <p style="font-size: 0.9rem; color: #64748b;">Escriba su consulta o pedido y nuestro sistema le atenderá de inmediato.</p>
+            <h2>💬 ${mod.data.title}</h2>
             <div class="chat-box">
-                <div class="chat-msg">¡Hola! ¿En qué podemos ayudarle hoy en nuestro establecimiento?</div>
+                <div class="chat-msg">${mod.data.welcome}</div>
             </div>
             <div class="chat-input-area">
                 <input type="text" placeholder="Escriba su mensaje aquí...">
-                <button onclick="alert('Mensaje enviado al asistente virtual con éxito.')">Enviar</button>
+                <button onclick="alert('Mensaje enviado.')">Enviar</button>
             </div>
         </section>`;
-                } else if (mod === 'servicios') {
+                } else if (mod.type === 'servicios') {
                     html += `
         <section class="card-section">
-            <h2>📋 Carta y Servicios Destacados</h2>
+            <h2>📋 Carta y Servicios</h2>
             <div class="services-grid">
                 <div class="service-item">
-                    <h4>Servicio Principal 01</h4>
-                    <p>Descripción detallada de la oferta, producto o servicio estrella para el cliente final.</p>
+                    <h4>${mod.data.s1Name}</h4>
+                    <p>${mod.data.s1Desc}</p>
                 </div>
                 <div class="service-item">
-                    <h4>Servicio Adicional 02</h4>
-                    <p>Atención personalizada, reservas online y gestión rápida adaptada a su local.</p>
+                    <h4>${mod.data.s2Name}</h4>
+                    <p>${mod.data.s2Desc}</p>
                 </div>
             </div>
         </section>`;
-                } else if (mod === 'contacto') {
+                } else if (mod.type === 'contacto') {
                     html += `
         <section class="card-section">
             <h2>📍 Ubicación y Contacto</h2>
             <div class="contact-info">
-                <div><strong>Dirección:</strong><br>Av. Principal 45, Local 2 (Madrid)</div>
-                <div><strong>Horario y Teléfono:</strong><br>Lunes a Domingo: 09:00 - 22:00<br>Tel: +34 911 000 111</div>
+                <div><strong>Dirección:</strong><br>${mod.data.address}</div>
+                <div><strong>Horario y Teléfono:</strong><br>${mod.data.hours}<br>Tel: ${mod.data.phone}</div>
             </div>
         </section>`;
                 }
@@ -207,18 +267,17 @@
 </body>
 </html>`;
 
-            // Descargar el fichero real
             const blob = new Blob([html], { type: 'text/html;charset=utf-8' });
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = 'web-b2c-produccion.html';
+            a.download = 'web-b2c-personalizada.html';
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
             URL.revokeObjectURL(url);
 
-            alert('¡Página web real compilada y descargada con éxito! Ya tienes un archivo HTML completamente funcional y diseñado.');
+            alert('¡Página web personalizada compilada y descargada con éxito!');
         }
     </script>
 
