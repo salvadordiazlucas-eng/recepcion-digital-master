@@ -6,138 +6,51 @@
     <title>Plataforma B2B / B2C - Índice Maestro V1.0</title>
     <style>
         *, *::before, *::after { box-sizing: border-box; }
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            background-color: #f8fafc;
-            color: #1e293b;
-        }
-        header {
-            background: #0f172a;
-            color: #ffffff;
-            padding: 2.5rem 2rem;
-            text-align: center;
-            border-bottom: 4px solid #3b82f6;
-        }
+        body { margin: 0; padding: 0; font-family: 'Segoe UI', Roboto, sans-serif; background-color: #f8fafc; color: #1e293b; }
+        header { background: #0f172a; color: #ffffff; padding: 2.5rem 2rem; text-align: center; border-bottom: 4px solid #3b82f6; }
         header h1 { margin: 0; font-size: 1.8rem; color: #3b82f6; }
-        header p { margin: 0.5rem 0 0 0; font-size: 0.95rem; color: #94a3b8; }
-        .container {
-            max-width: 1100px;
-            margin: 3rem auto;
-            padding: 0 1.5rem;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 1.5rem;
-        }
-        .card {
-            background: #ffffff;
-            border-radius: 12px;
-            padding: 2rem;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-            border: 1px solid #e2e8f0;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-        .card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08);
-        }
-        .card-content h3 { margin-top: 0; font-size: 1.2rem; color: #0f172a; display: flex; align-items: center; gap: 0.5rem; }
-        .card-content p { font-size: 0.9rem; color: #64748b; line-height: 1.5; margin-bottom: 1.5rem; }
-        .btn-module {
-            display: inline-block;
-            background: #3b82f6;
-            color: white;
-            text-decoration: none;
-            padding: 10px 16px;
-            border-radius: 6px;
-            font-weight: 600;
-            text-align: center;
-            font-size: 0.9rem;
-            transition: background 0.2s;
-        }
-        .btn-module:hover { background: #2563eb; }
-        footer {
-            text-align: center;
-            padding: 2rem;
-            font-size: 0.85rem;
-            color: #94a3b8;
-            border-top: 1px solid #e2e8f0;
-            margin-top: 3rem;
-        }
+        .container { max-width: 1100px; margin: 3rem auto; padding: 0 1.5rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; }
+        .card { background: #ffffff; border-radius: 12px; padding: 2rem; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); border: 1px solid #e2e8f0; display: flex; flex-direction: column; justify-content: space-between; }
+        .card-content h3 { margin-top: 0; font-size: 1.2rem; color: #0f172a; }
+        .btn-module { display: inline-block; background: #3b82f6; color: white; text-decoration: none; padding: 10px 16px; border-radius: 6px; font-weight: 600; text-align: center; margin-top: 1rem; }
     </style>
 </head>
 <body>
 
     <header>
         <h1>🚀 Plataforma de Gestión B2B / B2C</h1>
-        <p>Índice Maestro de Navegación — Versión 1.0 Operativa</p>
+        <p>Índice Maestro V1.0</p>
     </header>
 
     <div class="container">
-        
-        <!-- Módulo 1: Alta B2B -->
         <div class="card">
-            <div class="card-content">
-                <h3>📋 1. Alta Profesional B2B</h3>
-                <p>Formulario de registro para distribuidores y socios comerciales con validación de datos corporativos y subida de justificante IAE.</p>
-            </div>
-            <a href="alta-b2b.html" class="btn-module">Acceder al Formulario</a>
+            <div class="card-content"><h3>📋 1. Alta Profesional B2B</h3></div>
+            <a href="alta-b2b.html" class="btn-module">Acceder</a>
         </div>
-
-        <!-- Módulo 2: Panel Marca -->
         <div class="card">
-            <div class="card-content">
-                <h3>🏢 2. Panel de Marca Propia</h3>
-                <p>Capa de supervisión intermedia para controlar la red de distribuidores y aprobar o denegar solicitudes de modificación y bajas.</p>
-            </div>
-            <a href="panel-marca.html" class="btn-module">Acceder al Panel de Marca</a>
+            <div class="card-content"><h3>🏢 2. Panel de Marca</h3></div>
+            <a href="panel-marca.html" class="btn-module">Acceder</a>
         </div>
-
-        <!-- Módulo 3: Panel B2B -->
         <div class="card">
-            <div class="card-content">
-                <h3>🛠️ 3. Panel de Distribuidor B2B</h3>
-                <p>Entorno operativo diario con separación dual (empresa/local), geolocalización completa y clonación rápida de sedes secundarias.</p>
-            </div>
-            <a href="panel-b2b.html" class="btn-module">Acceder al Panel B2B</a>
+            <div class="card-content"><h3>🛠️ 3. Panel B2B</h3></div>
+            <a href="panel-b2b.html" class="btn-module">Acceder</a>
         </div>
-
-        <!-- Módulo 4: Pasarela de Pago -->
         <div class="card">
-            <div class="card-content">
-                <h3>💳 4. Pasarela de Activación</h3>
-                <p>Módulo de cobro y validación económica previa ("Requiere Pago Previo") antes de inyectar nuevas licencias o altas en producción.</p>
-            </div>
-            <a href="pago-activacion.html" class="btn-module">Acceder a Pasarela</a>
+            <div class="card-content"><h3>💳 4. Pasarela de Activación</h3></div>
+            <a href="pago-activacion.html" class="btn-module">Acceder</a>
         </div>
-
-        <!-- Módulo 5: Vista B2C -->
         <div class="card">
-            <div class="card-content">
-                <h3>✨ 5. Vista del Cliente B2C</h3>
-                <p>Interfaz final llave en mano para el establecimiento o local, mostrando su marca blanca aplicada con logotipo y datos operativos.</p>
-            </div>
-            <a href="panel-b2c.html" class="btn-module">Acceder a Vista B2C</a>
+            <div class="card-content"><h3>✨ 5. Vista del Cliente B2C</h3></div>
+            <a href="panel-b2c.html" class="btn-module">Acceder</a>
         </div>
-
-        <!-- Módulo 6: Factoría de Bloques -->
         <div class="card">
-            <div class="card-content">
-                <h3>🧩 6. Factoría de Bloques</h3>
-                <p>Constructor modular e interfaz visual para el ensamblaje de componentes y estructuras heredables de marca blanca.</p>
-            </div>
-            <a href="factoria.html" class="btn-module">Acceder a Factoría</a>
+            <div class="card-content"><h3>🧩 6. Factoría de Bloques</h3></div>
+            <a href="factoria.html" class="btn-module">Acceder</a>
         </div>
-
+        <div class="card">
+            <div class="card-content"><h3>🌐 7. Panel Máster B2C</h3></div>
+            <a href="master-b2c.html" class="btn-module">Acceder</a>
+        </div>
     </div>
-
-    <footer>
-        Ecosistema Multi-nivel B2B2C • Versión 1.0 lista para producción local y sincronización en GitHub.
-    </footer>
-
 </body>
 </html>
