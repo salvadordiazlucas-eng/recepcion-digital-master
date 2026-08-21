@@ -8,14 +8,17 @@
         *, *::before, *::after { box-sizing: border-box; }
         body { margin: 0; padding: 0; font-family: 'Segoe UI', Roboto, sans-serif; background-color: #f1f5f9; color: #1e293b; display: flex; height: 100vh; overflow: hidden; }
         
-        /* Barra Lateral */
-        .sidebar { width: 380px; background: #0f172a; color: #fff; padding: 1.5rem; display: flex; flex-direction: column; border-right: 1px solid #334155; overflow-y: auto; }
+        .sidebar { width: 390px; background: #0f172a; color: #fff; padding: 1.5rem; display: flex; flex-direction: column; border-right: 1px solid #334155; overflow-y: auto; }
         .sidebar h2 { font-size: 1.1rem; color: #3b82f6; margin-top: 0; }
         .sidebar p { font-size: 0.85rem; color: #94a3b8; margin-bottom: 1rem; }
         
-        .theme-selector { background: #1e293b; border: 1px solid #334155; padding: 10px; border-radius: 8px; margin-bottom: 1.5rem; }
-        .theme-selector label { font-size: 0.8rem; color: #94a3b8; display: block; margin-bottom: 5px; }
-        .theme-selector select { width: 100%; padding: 8px; background: #0f172a; color: white; border: 1px solid #475569; border-radius: 6px; font-size: 0.9rem; }
+        .theme-selector { background: #1e293b; border: 1px solid #334155; padding: 12px; border-radius: 8px; margin-bottom: 1.5rem; }
+        .theme-selector label { font-size: 0.8rem; color: #94a3b8; display: block; margin-bottom: 8px; }
+        .theme-options { display: flex; flex-direction: column; gap: 8px; }
+        .theme-option { display: flex; align-items: center; gap: 10px; background: #0f172a; padding: 8px; border: 1px solid #475569; border-radius: 6px; cursor: pointer; font-size: 0.85rem; }
+        .theme-option input { cursor: pointer; }
+        .color-dots { display: flex; gap: 4px; }
+        .dot { width: 14px; height: 14px; border-radius: 50%; display: inline-block; border: 1px solid rgba(255,255,255,0.2); }
 
         .block-item { background: #1e293b; border: 1px solid #334155; padding: 12px; border-radius: 8px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; transition: background 0.2s; }
         .block-item:hover { background: #334155; }
@@ -23,7 +26,6 @@
         .btn-add { background: #3b82f6; color: white; border: none; padding: 6px 10px; border-radius: 4px; cursor: pointer; font-size: 0.8rem; }
         .btn-add:hover { background: #2563eb; }
         
-        /* Área Principal / Lienzo */
         .main-content { flex: 1; padding: 2rem; display: flex; flex-direction: column; overflow-y: auto; }
         .main-content h1 { font-size: 1.4rem; color: #0f172a; margin-top: 0; }
         .canvas { flex: 1; background: #ffffff; border: 2px dashed #cbd5e1; border-radius: 10px; padding: 1.5rem; display: flex; flex-direction: column; gap: 1rem; min-height: 350px; margin-bottom: 1.5rem; overflow-y: auto; }
@@ -38,7 +40,6 @@
         .form-group.full { grid-column: span 2; }
         .form-group label { font-size: 0.75rem; font-weight: 700; color: #64748b; display: block; margin-bottom: 3px; }
         .form-group input, .form-group textarea { width: 100%; padding: 7px; border: 1px solid #cbd5e1; border-radius: 4px; font-size: 0.85rem; background: #fff; }
-        .form-group textarea { resize: vertical; height: 50px; }
 
         .btn-remove { background: #ef4444; color: white; border: none; padding: 4px 8px; border-radius: 4px; cursor: pointer; font-size: 0.75rem; }
         .btn-compile { background: #10b981; color: white; border: none; padding: 14px; border-radius: 8px; font-weight: bold; font-size: 1rem; cursor: pointer; text-align: center; width: 100%; transition: background 0.2s; }
@@ -50,21 +51,37 @@
 <body>
 
     <div class="sidebar">
-        <h2>🧱 Módulos y Editor</h2>
-        <p>Elige la paleta de colores y añade bloques configurables al lienzo.</p>
+        <h2>🧱 Módulos y Editor Visual</h2>
+        <p>Selecciona tu paleta corporativa y personaliza los bloques.</p>
         
         <div class="theme-selector">
-            <label>🎨 Tema Corporativo / Pantones:</label>
-            <select id="themeColor">
-                <option value="exec">Azul Ejecutivo ( #0f172a / #3b82f6 )</option>
-                <option value="eco">Verde Eco-Salud ( #064e3b / #10b981 )</option>
-                <option value="minimal">Grafito Minimalista ( #18181b / #71717a )</option>
-                <option value="wine">Borgoña Elegante ( #4c0519 / #e11d48 )</option>
-            </select>
+            <label>🎨 Temas y Pantones Corporativos:</label>
+            <div class="theme-options">
+                <label class="theme-option">
+                    <input type="radio" name="theme" value="exec" checked>
+                    <span>Azul Ejecutivo</span>
+                    <div class="color-dots"><span class="dot" style="background:#0f172a"></span><span class="dot" style="background:#3b82f6"></span><span class="dot" style="background:#64748b"></span></div>
+                </label>
+                <label class="theme-option">
+                    <input type="radio" name="theme" value="eco">
+                    <span>Verde Eco</span>
+                    <div class="color-dots"><span class="dot" style="background:#064e3b"></span><span class="dot" style="background:#10b981"></span><span class="dot" style="background:#6b7280"></span></div>
+                </label>
+                <label class="theme-option">
+                    <input type="radio" name="theme" value="minimal">
+                    <span>Grafito Minimal</span>
+                    <div class="color-dots"><span class="dot" style="background:#18181b"></span><span class="dot" style="background:#71717a"></span><span class="dot" style="background:#e4e4e7"></span></div>
+                </label>
+                <label class="theme-option">
+                    <input type="radio" name="theme" value="wine">
+                    <span>Borgoña Elegante</span>
+                    <div class="color-dots"><span class="dot" style="background:#4c0519"></span><span class="dot" style="background:#e11d48"></span><span class="dot" style="background:#9ca3af"></span></div>
+                </label>
+            </div>
         </div>
 
         <div class="block-item" onclick="addModule('identidad')">
-            <span class="block-title">🏷️ 1. Identidad y Cabecera</span>
+            <span class="block-title">🏷️ 1. Identidad y Logotipo</span>
             <button class="btn-add">+ Añadir</button>
         </div>
         <div class="block-item" onclick="addModule('chat')">
@@ -83,14 +100,14 @@
 
     <div class="main-content">
         <a href="index.html" class="btn-back">← Volver al Índice Maestro</a>
-        <h1>Constructor Web Visual con Editor de Contenido</h1>
-        <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 1.5rem;">Personaliza los campos de cada módulo y compila una página web profesional lista para producción.</p>
+        <h1>Constructor Web con Selección de Color e Imágenes</h1>
+        <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 1.5rem;">Sube tu logotipo, define tus textos y genera una web lista para producción.</p>
 
         <div class="canvas" id="canvas">
-            <div class="canvas-placeholder" id="placeholder">Añade módulos desde la barra lateral para configurar el contenido...</div>
+            <div class="canvas-placeholder" id="placeholder">Añade módulos desde la barra lateral para estructurar el contenido...</div>
         </div>
 
-        <button class="btn-compile" onclick="compileCustomWebsite()">⚡ Compilar y Descargar Web B2C Personalizada (.html)</button>
+        <button class="btn-compile" onclick="compileCustomWebsite()">⚡ Compilar y Descargar Web B2C Completa (.html)</button>
     </div>
 
     <script>
@@ -99,13 +116,13 @@
         function addModule(type) {
             let data = {};
             if (type === 'identidad') {
-                data = { title: 'Cafetería & Negocio Central', subtitle: 'Su espacio profesional digitalizado y listo para clientes' };
+                data = { title: 'Puliendo Ideas', subtitle: 'Dando luz a sus ideas', logo: '' };
             } else if (type === 'chat') {
-                data = { title: 'Asistente Virtual de Recepción', welcome: '¡Hola! ¿En qué podemos ayudarle hoy en nuestro establecimiento?' };
+                data = { title: 'Tiene una idea para compartir con nosotros?', welcome: '¡Hola! ¿En qué podemos ayudarle hoy?' };
             } else if (type === 'servicios') {
-                data = { s1Name: 'Servicio Principal', s1Desc: 'Descripción detallada de la oferta o producto estrella.', s2Name: 'Servicio Adicional', s2Desc: 'Atención personalizada y gestión rápida adaptada a su local.' };
+                data = { s1Name: 'Cartas Impresas', s1Desc: 'Cuéntanos tu visión y crearemos una realidad', s2Name: 'Google Bussines', s2Desc: 'Te ayudamos a mejorar tu presencia en Google.' };
             } else if (type === 'contacto') {
-                data = { address: 'Av. Principal 45, Local 2 (Madrid)', hours: 'Lunes a Domingo: 09:00 - 22:00', phone: '+34 911 000 111' };
+                data = { address: 'Av. Principal 45, Local 2 (Majadahonda)', hours: 'Lunes a Domingo: 09:00 - 22:00', phone: '+34 900 000 000' };
             }
             modules.push({ type, data });
             renderCanvas();
@@ -120,10 +137,21 @@
             modules[index].data[field] = value;
         }
 
+        function handleImageUpload(index, event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    modules[index].data.logo = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
         function renderCanvas() {
             const canvas = document.getElementById('canvas');
             if (modules.length === 0) {
-                canvas.innerHTML = '<div class="canvas-placeholder" id="placeholder">Añade módulos desde la barra lateral para configurar el contenido...</div>';
+                canvas.innerHTML = '<div class="canvas-placeholder" id="placeholder">Añade módulos desde la barra lateral para estructurar el contenido...</div>';
                 return;
             }
 
@@ -137,24 +165,25 @@
                     fieldsHtml = `
                         <div class="form-group"><label>Nombre Comercial</label><input type="text" value="${mod.data.title}" oninput="updateData(${index}, 'title', this.value)"></div>
                         <div class="form-group"><label>Eslogan / Subtítulo</label><input type="text" value="${mod.data.subtitle}" oninput="updateData(${index}, 'subtitle', this.value)"></div>
+                        <div class="form-group full"><label>Subir Logotipo (Imagen)</label><input type="file" accept="image/*" onchange="handleImageUpload(${index}, event)"></div>
                     `;
                 } else if (mod.type === 'chat') {
                     fieldsHtml = `
-                        <div class="form-group"><label>Título del Chat</label><input type="text" value="${mod.data.title}" oninput="updateData(${index}, 'title', this.value)"></div>
-                        <div class="form-group"><label>Mensaje de Bienvenida</label><input type="text" value="${mod.data.welcome}" oninput="updateData(${index}, 'welcome', this.value)"></div>
+                        <div class="form-group"><label>Título del Asistente</label><input type="text" value="${mod.data.title}" oninput="updateData(${index}, 'title', this.value)"></div>
+                        <div class="form-group"><label>Mensaje Inicial</label><input type="text" value="${mod.data.welcome}" oninput="updateData(${index}, 'welcome', this.value)"></div>
                     `;
                 } else if (mod.type === 'servicios') {
                     fieldsHtml = `
-                        <div class="form-group"><label>Nombre Servicio 1</label><input type="text" value="${mod.data.s1Name}" oninput="updateData(${index}, 's1Name', this.value)"></div>
-                        <div class="form-group"><label>Descripción S1</label><input type="text" value="${mod.data.s1Desc}" oninput="updateData(${index}, 's1Desc', this.value)"></div>
-                        <div class="form-group"><label>Nombre Servicio 2</label><input type="text" value="${mod.data.s2Name}" oninput="updateData(${index}, 's2Name', this.value)"></div>
-                        <div class="form-group"><label>Descripción S2</label><input type="text" value="${mod.data.s2Desc}" oninput="updateData(${index}, 's2Desc', this.value)"></div>
+                        <div class="form-group"><label>Servicio 1: Título</label><input type="text" value="${mod.data.s1Name}" oninput="updateData(${index}, 's1Name', this.value)"></div>
+                        <div class="form-group"><label>Servicio 1: Descripción</label><input type="text" value="${mod.data.s1Desc}" oninput="updateData(${index}, 's1Desc', this.value)"></div>
+                        <div class="form-group"><label>Servicio 2: Título</label><input type="text" value="${mod.data.s2Name}" oninput="updateData(${index}, 's2Name', this.value)"></div>
+                        <div class="form-group"><label>Servicio 2: Descripción</label><input type="text" value="${mod.data.s2Desc}" oninput="updateData(${index}, 's2Desc', this.value)"></div>
                     `;
                 } else if (mod.type === 'contacto') {
                     fieldsHtml = `
-                        <div class="form-group"><label>Dirección Física</label><input type="text" value="${mod.data.address}" oninput="updateData(${index}, 'address', this.value)"></div>
+                        <div class="form-group"><label>Dirección del Local</label><input type="text" value="${mod.data.address}" oninput="updateData(${index}, 'address', this.value)"></div>
                         <div class="form-group"><label>Horario</label><input type="text" value="${mod.data.hours}" oninput="updateData(${index}, 'hours', this.value)"></div>
-                        <div class="form-group full"><label>Teléfono de Contacto</label><input type="text" value="${mod.data.phone}" oninput="updateData(${index}, 'phone', this.value)"></div>
+                        <div class="form-group full"><label>Teléfono</label><input type="text" value="${mod.data.phone}" oninput="updateData(${index}, 'phone', this.value)"></div>
                     `;
                 }
 
@@ -171,11 +200,11 @@
 
         function compileCustomWebsite() {
             if (modules.length === 0) {
-                alert('Añade y configura al menos un módulo para compilar la web.');
+                alert('Añade y configura al menos un módulo para compilar.');
                 return;
             }
 
-            const theme = document.getElementById('themeColor').value;
+            const theme = document.querySelector('input[name="theme"]:checked').value;
             let primary = '#3b82f6', bgHeader = '#0f172a';
             if (theme === 'eco') { primary = '#10b981'; bgHeader = '#064e3b'; }
             else if (theme === 'minimal') { primary = '#71717a'; bgHeader = '#18181b'; }
@@ -186,14 +215,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Establecimiento Operativo - B2C</title>
+    <title>Establecimiento B2C Operativo</title>
     <style>
         * { box-sizing: border-box; }
         body { font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; background-color: #f8fafc; color: #1e293b; line-height: 1.6; }
         .container { max-width: 900px; margin: 0 auto; padding: 2rem 1rem; display: flex; flex-direction: column; gap: 2rem; }
         
         .web-header { background: ${bgHeader}; color: white; padding: 3rem 1.5rem; text-align: center; border-bottom: 4px solid ${primary}; }
-        .web-header h1 { margin: 0; font-size: 2rem; color: ${primary}; }
+        .web-header img { max-height: 70px; margin-bottom: 1rem; object-fit: contain; }
+        .web-header h1 { margin: 0; font-size: 2rem; color: #ffffff; }
         .web-header p { margin: 0.5rem 0 0 0; color: #94a3b8; font-size: 1.1rem; }
 
         .card-section { background: #ffffff; padding: 2rem; border-radius: 12px; border: 1px solid #e2e8f0; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02); }
@@ -217,8 +247,10 @@
 
             modules.forEach(mod => {
                 if (mod.type === 'identidad') {
+                    let logoTag = mod.data.logo ? `<img src="${mod.data.logo}" alt="Logotipo">` : '';
                     html += `
     <header class="web-header">
+        ${logoTag}
         <h1>${mod.data.title}</h1>
         <p>${mod.data.subtitle}</p>
     </header>
@@ -232,7 +264,7 @@
             </div>
             <div class="chat-input-area">
                 <input type="text" placeholder="Escriba su mensaje aquí...">
-                <button onclick="alert('Mensaje enviado.')">Enviar</button>
+                <button onclick="alert('Mensaje enviado con éxito.')">Enviar</button>
             </div>
         </section>`;
                 } else if (mod.type === 'servicios') {
@@ -277,7 +309,7 @@
             document.body.removeChild(a);
             URL.revokeObjectURL(url);
 
-            alert('¡Página web personalizada compilada y descargada con éxito!');
+            alert('¡Página web con colores e imagen compilada y descargada con éxito!');
         }
     </script>
 
