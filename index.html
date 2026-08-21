@@ -9,26 +9,26 @@
         body { margin: 0; padding: 0; font-family: 'Segoe UI', Roboto, sans-serif; background-color: #f8fafc; color: #1e293b; }
         header { background: #0f172a; color: #ffffff; padding: 2.5rem 2rem; text-align: center; border-bottom: 4px solid #3b82f6; }
         header h1 { margin: 0; font-size: 1.8rem; color: #3b82f6; }
+        header p { margin: 0.5rem 0 0 0; font-size: 0.95rem; color: #94a3b8; }
         .container { max-width: 1100px; margin: 3rem auto; padding: 0 1.5rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; }
-        .card { background: #ffffff; border-radius: 12px; padding: 2rem; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); border: 1px solid #e2e8f0; display: flex; flex-direction: column; justify-content: space-between; }
-        .card-content h3 { margin-top: 0; font-size: 1.2rem; color: #0f172a; }
-        .btn-module { display: inline-block; background: #3b82f6; color: white; text-decoration: none; padding: 10px 16px; border-radius: 6px; font-weight: 600; text-align: center; margin-top: 1rem; }
+        .card { background: #ffffff; border-radius: 12px; padding: 2rem; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); border: 1px solid #e2e8f0; display: flex; flex-direction: column; }
+        .card-content h3 { margin-top: 0; font-size: 1.2rem; color: #0f172a; margin-bottom: 1rem; }
+        .card-content p { font-size: 0.9rem; color: #64748b; line-height: 1.5; margin-bottom: 1.5rem; display: block !important; visibility: visible !important; }
+        .btn-module { display: inline-block; background: #3b82f6; color: white; text-decoration: none; padding: 10px 16px; border-radius: 6px; font-weight: 600; text-align: center; margin-top: auto; }
     </style>
 </head>
 <body>
     <header>
         <h1>🚀 Plataforma de Gestión B2B / B2C</h1>
-        <p>Índice Maestro V1.0</p>
+        <p>Índice Maestro de Navegación — Versión 1.0 Operativa</p>
     </header>
     <div class="container">
-        <div class="card"><div class="card-content"><h3>📋 1. Alta Profesional B2B</h3></div><a href="alta-b2b.html" class="btn-module">Acceder</a></div>
-        <div class="card"><div class="card-content"><h3>🏢 2. Panel de Marca</h3></div><a href="panel-marca.html" class="btn-module">Acceder</a></div>
-        <div class="card"><div class="card-content"><h3>🛠️ 3. Panel B2B</h3></div><a href="panel-b2b.html" class="btn-module">Acceder</a></div>
-        <div class="card"><div class="card-content"><h3>💳 4. Pasarela de Activación</h3></div><a href="pago-activacion.html" class="btn-module">Acceder</a></div>
-        <!-- Aquí está el cambio: llamamos al archivo que SÍ existe -->
-        <div class="card"><div class="card-content"><h3>✨ 5. Vista del Cliente B2C</h3></div><a href="master-b2c.html" class="btn-module">Acceder</a></div>
-        <div class="card"><div class="card-content"><h3>🧩 6. Factoría de Bloques</h3></div><a href="factoria.html" class="btn-module">Acceder</a></div>
-        <div class="card"><div class="card-content"><h3>🌐 7. Panel Máster B2C</h3></div><a href="master-b2c.html" class="btn-module">Acceder</a></div>
+        <div class="card"><div class="card-content"><h3>📋 1. Alta Profesional B2B</h3><p>Formulario de registro para distribuidores y socios comerciales con validación de datos corporativos.</p></div><a href="alta-b2b.html" class="btn-module">Acceder</a></div>
+        <div class="card"><div class="card-content"><h3>🏢 2. Panel de Marca</h3><p>Capa de supervisión intermedia para controlar la red de distribuidores y aprobar modificaciones.</p></div><a href="panel-marca.html" class="btn-module">Acceder</a></div>
+        <div class="card"><div class="card-content"><h3>🛠️ 3. Panel B2B</h3><p>Entorno operativo diario con separación dual empresa/local y clonación rápida de sedes.</p></div><a href="panel-b2b.html" class="btn-module">Acceder</a></div>
+        <div class="card"><div class="card-content"><h3>💳 4. Pasarela de Activación</h3><p>Módulo de cobro y validación económica previa antes de inyectar altas en producción.</p></div><a href="pago-activacion.html" class="btn-module">Acceder</a></div>
+        <div class="card"><div class="card-content"><h3>✨ 5. Vista del Cliente B2C</h3><p>Interfaz final llave en mano para el establecimiento mostrando su marca blanca aplicada.</p></div><a href="master-b2c.html" class="btn-module">Acceder</a></div>
+        <div class="card"><div class="card-content"><h3>🧩 6. Factoría de Bloques</h3><p>Constructor modular para el ensamblaje de componentes y estructuras heredables.</p></div><a href="factoria.html" class="btn-module">Acceder</a></div>
     </div>
 </body>
 </html>
