@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel Máster - Supervisión Global B2C</title>
+    <style>
+        *, *::before, *::after { box-sizing: border-box; }
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f8fafc;
+            color: #1e293b;
+        }
+        header {
+            background: #0f172a;
+            color: #ffffff;
+            padding: 1.5rem 2rem;
+            border-bottom: 4px solid #3b82f6;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        header h1 { margin: 0; font-size: 1.3rem; color: #3b82f6; }
+        header p { margin: 0; font-size: 0.85rem; color: #94a3b8; }
+        .badge-master {
+            background: #1e293b;
+            border: 1px solid #3b82f6;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            color: #3b82f6;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+            display: grid;
+            gap: 2rem;
+        }
+        .card {
+            background: #ffffff;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e2e8f0;
+        }
+        h3 { margin-top: 0; font-size: 1.1rem; color: #0f172a; border-bottom: 2px solid #f1f5f9; padding-bottom: 10px; }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+        th, td {
+            text-align: left;
+            padding: 12px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        th { background: #f1f5f9; color: #475569; font-weight: 600; }
+        .btn-action {
+            background: #3b82f6;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .btn-action:hover { background: #2563eb; }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        .stat-card {
+            background: #ffffff;
+            padding: 1.2rem;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+        }
+        .stat-card h4 { margin: 0; font-size: 0.8rem; color: #64748b; text-transform: uppercase; }
+        .stat-card .number { font-size: 1.5rem; font-weight: bold; color: #0f172a; margin-top: 0.5rem; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div>
+            <h1>🌐 Panel Máster - Auditoría Global B2C</h1>
+            <p>Control centralizado de establecimientos y licencias en producción</p>
+        </div>
+        <div class="badge-master">Rol: Super Administrador</div>
+    </header>
+
+    <div class="container">
+        
+        <!-- Tarjetas de Estadísticas Globales -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <h4>Total Establecimientos B2C</h4>
+                <div class="number">124</div>
+            </div>
+            <div class="stat-card">
+                <h4>Sedes Activas en Producción</h4>
+                <div class="number">118</div>
+            </div>
+            <div class="stat-card">
+                <h4>Pendientes de Activación / Pago</h4>
+                <div class="number">6</div>
+            </div>
+        </div>
+
+        <!-- Listado Global de Clientes B2C -->
+        <div class="card">
+            <h3>📋 Directorio Global de Establecimientos B2C</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Establecimiento / Local</th>
+                        <th>Ubicación</th>
+                        <th>Marca Propietaria / B2B</th>
+                        <th>Estado</th>
+                        <th>Acción Máster</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Cafetería Central - Zona Norte</strong></td>
+                        <td>Madrid (Madrid)</td>
+                        <td>Marca Blanca A / B2B-7892</td>
+                        <td><span style="color: #10b981; font-weight: bold;">● Activo</span></td>
+                        <td><a href="panel-b2c.html" target="_blank" class="btn-action">Ver Vista B2C</a></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Restaurante El Rincón</strong></td>
+                        <td>Valencia (Valencia)</td>
+                        <td>Marca Blanca B / B2B-4410</td>
+                        <td><span style="color: #10b981; font-weight: bold;">● Activo</span></td>
+                        <td><a href="panel-b2c.html" target="_blank" class="btn-action">Ver Vista B2C</a></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Asador Donostiarra</strong></td>
+                        <td>Bilbao (Vizcaya)</td>
+                        <td>Marca Blanca A / B2B-7892</td>
+                        <td><span style="color: #f59e0b; font-weight: bold;">● Pendiente Pago</span></td>
+                        <td><a href="pago-activacion.html" target="_blank" class="btn-action" style="background: #f59e0b;">Forzar Activación</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+</body>
+</html>
