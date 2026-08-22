@@ -100,14 +100,14 @@
 
     <div class="main-content">
         <a href="index.html" class="btn-back">← Volver al Índice Maestro</a>
-        <h1>Constructor Web con Selección de Color e Imágenes</h1>
-        <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 1.5rem;">Sube tu logotipo, define tus textos y genera una web lista para producción.</p>
+        <h1>Constructor Web con Títulos Editables</h1>
+        <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 1.5rem;">Personaliza cada sección y título antes de compilar tu web B2C.</p>
 
         <div class="canvas" id="canvas">
             <div class="canvas-placeholder" id="placeholder">Añade módulos desde la barra lateral para estructurar el contenido...</div>
         </div>
 
-        <button class="btn-compile" onclick="compileCustomWebsite()">⚡ Compilar y Descargar Web B2C Completa (.html)</button>
+        <button class="btn-compile" onclick="compileCustomWebsite()">⚡ Compilar y Descargar Web B2C Personalizada (.html)</button>
     </div>
 
     <script>
@@ -118,11 +118,11 @@
             if (type === 'identidad') {
                 data = { title: 'Puliendo Ideas', subtitle: 'Dando luz a sus ideas', logo: '' };
             } else if (type === 'chat') {
-                data = { title: 'Tiene una idea para compartir con nosotros?', welcome: '¡Hola! ¿En qué podemos ayudarle hoy?' };
+                data = { sectionTitle: 'Asistente Virtual de Recepción', title: 'Tiene una idea para compartir con nosotros?', welcome: '¡Hola! ¿En qué podemos ayudarle hoy?' };
             } else if (type === 'servicios') {
-                data = { s1Name: 'Cartas Impresas', s1Desc: 'Cuéntanos tu visión y crearemos una realidad', s2Name: 'Google Bussines', s2Desc: 'Te ayudamos a mejorar tu presencia en Google.' };
+                data = { sectionTitle: 'Carta y Servicios', s1Name: 'Cartas Impresas', s1Desc: 'Cuéntanos tu visión y crearemos una realidad', s2Name: 'Google Business', s2Desc: 'Te ayudamos a mejorar tu presencia en Google.' };
             } else if (type === 'contacto') {
-                data = { address: 'Av. Principal 45, Local 2 (Majadahonda)', hours: 'Lunes a Domingo: 09:00 - 22:00', phone: '+34 900 000 000' };
+                data = { sectionTitle: 'Ubicación y Contacto', address: 'Av. Principal 45, Local 2 (Majadahonda)', hours: 'Lunes a Domingo: 09:00 - 22:00', phone: '+34 900 000 000' };
             }
             modules.push({ type, data });
             renderCanvas();
@@ -169,11 +169,13 @@
                     `;
                 } else if (mod.type === 'chat') {
                     fieldsHtml = `
-                        <div class="form-group"><label>Título del Asistente</label><input type="text" value="${mod.data.title}" oninput="updateData(${index}, 'title', this.value)"></div>
+                        <div class="form-group full"><label>Título Principal de la Sección</label><input type="text" value="${mod.data.sectionTitle}" oninput="updateData(${index}, 'sectionTitle', this.value)"></div>
+                        <div class="form-group"><label>Subtítulo / Pregunta del Chat</label><input type="text" value="${mod.data.title}" oninput="updateData(${index}, 'title', this.value)"></div>
                         <div class="form-group"><label>Mensaje Inicial</label><input type="text" value="${mod.data.welcome}" oninput="updateData(${index}, 'welcome', this.value)"></div>
                     `;
                 } else if (mod.type === 'servicios') {
                     fieldsHtml = `
+                        <div class="form-group full"><label>Título Principal de la Sección</label><input type="text" value="${mod.data.sectionTitle}" oninput="updateData(${index}, 'sectionTitle', this.value)"></div>
                         <div class="form-group"><label>Servicio 1: Título</label><input type="text" value="${mod.data.s1Name}" oninput="updateData(${index}, 's1Name', this.value)"></div>
                         <div class="form-group"><label>Servicio 1: Descripción</label><input type="text" value="${mod.data.s1Desc}" oninput="updateData(${index}, 's1Desc', this.value)"></div>
                         <div class="form-group"><label>Servicio 2: Título</label><input type="text" value="${mod.data.s2Name}" oninput="updateData(${index}, 's2Name', this.value)"></div>
@@ -181,6 +183,7 @@
                     `;
                 } else if (mod.type === 'contacto') {
                     fieldsHtml = `
+                        <div class="form-group full"><label>Título Principal de la Sección</label><input type="text" value="${mod.data.sectionTitle}" oninput="updateData(${index}, 'sectionTitle', this.value)"></div>
                         <div class="form-group"><label>Dirección del Local</label><input type="text" value="${mod.data.address}" oninput="updateData(${index}, 'address', this.value)"></div>
                         <div class="form-group"><label>Horario</label><input type="text" value="${mod.data.hours}" oninput="updateData(${index}, 'hours', this.value)"></div>
                         <div class="form-group full"><label>Teléfono</label><input type="text" value="${mod.data.phone}" oninput="updateData(${index}, 'phone', this.value)"></div>
@@ -258,7 +261,8 @@
                 } else if (mod.type === 'chat') {
                     html += `
         <section class="card-section">
-            <h2>💬 ${mod.data.title}</h2>
+            <h2>💬 ${mod.data.sectionTitle}</h2>
+            <p style="font-size: 0.9rem; color: #64748b; margin-bottom: 1rem;">${mod.data.title}</p>
             <div class="chat-box">
                 <div class="chat-msg">${mod.data.welcome}</div>
             </div>
@@ -270,7 +274,7 @@
                 } else if (mod.type === 'servicios') {
                     html += `
         <section class="card-section">
-            <h2>📋 Carta y Servicios</h2>
+            <h2>📋 ${mod.data.sectionTitle}</h2>
             <div class="services-grid">
                 <div class="service-item">
                     <h4>${mod.data.s1Name}</h4>
@@ -285,7 +289,7 @@
                 } else if (mod.type === 'contacto') {
                     html += `
         <section class="card-section">
-            <h2>📍 Ubicación y Contacto</h2>
+            <h2>📍 ${mod.data.sectionTitle}</h2>
             <div class="contact-info">
                 <div><strong>Dirección:</strong><br>${mod.data.address}</div>
                 <div><strong>Horario y Teléfono:</strong><br>${mod.data.hours}<br>Tel: ${mod.data.phone}</div>
@@ -309,7 +313,7 @@
             document.body.removeChild(a);
             URL.revokeObjectURL(url);
 
-            alert('¡Página web con colores e imagen compilada y descargada con éxito!');
+            alert('¡Página web compilada con títulos editados con éxito!');
         }
     </script>
 
