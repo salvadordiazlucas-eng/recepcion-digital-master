@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creador de Formularios Modulares | Captura de Leads</title>
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --accent-blue: #38bdf8;
+            --accent-hover: #0284c7;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border-color: #334155;
+            --success: #22c55e;
+            --danger: #ef4444;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            padding: 24px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 800px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .header h1 {
+            font-size: 1.8rem;
+            color: #ffffff;
+            margin-bottom: 6px;
+        }
+
+        .header p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin: 0;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid var(--border-color);
+            margin-bottom: 20px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+        }
+
+        .card-title {
+            font-size: 1.1rem;
+            color: var(--accent-blue);
+            margin-top: 0;
+            margin-bottom: 16px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 8px;
+        }
+
+        .badge {
+            background: var(--border-color);
+            color: var(--accent-blue);
+            font-size: 0.7rem;
+            padding: 2px 6px;
+            border-radius: 4px;
+            display: inline-block;
+            margin-bottom: 4px;
+            font-weight: bold;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 8px 10px;
+            background-color: #0f172a;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            color: #ffffff;
+            font-size: 0.9rem;
+            box-sizing: border-box;
+            margin-bottom: 6px;
+            outline: none;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            border-color: var(--accent-blue);
+        }
+
+        .btn {
+            padding: 8px 14px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: opacity 0.2s;
+        }
+
+        .btn:hover { opacity: 0.9; }
+        .btn-main { 
+            background: var(--success); 
+            color: #0f172a; 
+            width: 100%; 
+            padding: 14px; 
+            font-size: 1.05rem; 
+            font-weight: bold; 
+            text-transform: uppercase; 
+            margin-top: 10px; 
+        }
+
+        .form-builder-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 12px;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            color: var(--text-main);
+            background: #0f172a;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+        }
+
+        .checkbox-group input { 
+            width: auto; 
+            margin: 0; 
+            cursor: pointer;
+        }
+
+        .checkbox-group label {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="header">
+        <h1>Creador de Formularios Modulares</h1>
+        <p>Configura los campos de captación de leads y genera el código para tu sitio web</p>
+    </div>
+
+    <!-- CONFIGURACIÓN DEL FORMULARIO -->
+    <div class="card">
+        <h2 class="card-title">Campos del Formulario Final (Captura de Leads)</h2>
+        <div class="form-builder-grid">
+            <div class="checkbox-group">
+                <input type="checkbox" id="field_negocio" checked>
+                <label for="field_negocio">Nombre del Comercio</label>
+            </div>
+            <div class="checkbox-group">
+                <input type="checkbox" id="field_poblacion" checked>
+                <label for="field_poblacion">Población / Ciudad</label>
+            </div>
+            <div class="checkbox-group">
+                <input type="checkbox" id="field_contacto" checked>
+                <label for="field_contacto">Persona de Contacto</label>
+            </div>
+            <div class="checkbox-group">
+                <input type="checkbox" id="field_email" checked>
+                <label for="field_email">Correo Electrónico</label>
+            </div>
+            <div class="checkbox-group">
+                <input type="checkbox" id="field_telefono" checked>
+                <label for="field_telefono">Teléfono / WhatsApp</label>
+            </div>
+            <div class="checkbox-group">
+                <input type="checkbox" id="field_preferencia" checked>
+                <label for="field_preferencia">Preferencia de Contacto</label>
+            </div>
+        </div>
+        <div style="margin-top: 16px;">
+            <label class="badge">ENDPOINT DE ENVÍO (Formspree / Webhook)</label>
+            <input type="text" id="webhook_url" value="https://formspree.io/f/xqewzpbr" placeholder="https://formspree.io/f/tu_codigo">
+        </div>
+    </div>
+
+    <button class="btn btn-main" onclick="generarCodigoFormulario()">Generar Código HTML/JS Compilado</button>
+
+    <!-- CÓDIGO FINAL -->
+    <div id="resultado-container" class="card" style="display:none; margin-top: 20px;">
+        <h2 class="card-title">Código Final Listo para Publicar</h2>
+        <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:10px;">Copia este código y guárdalo en tu repositorio de GitHub o pégalo en un widget de Google Sites:</p>
+        <textarea id="codigo-final" style="height: 280px; font-family: monospace; font-size: 0.8rem; background: #0f172a;"></textarea>
+    </div>
+
+</div>
+
+<script>
+    function generarCodigoFormulario() {
+        const webhook = document.getElementById('webhook_url').value.trim();
+        const fields = {
+            negocio: document.getElementById('field_negocio').checked,
+            poblacion: document.getElementById('field_poblacion').checked,
+            contacto: document.getElementById('field_contacto').checked,
+            email: document.getElementById('field_email').checked,
+            telefono: document.getElementById('field_telefono').checked,
+            preferencia: document.getElementById('field_preferencia').checked
+        };
+
+        const compiledHTML = `<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Contacto</title>
+    <style>
+        :root { --bg: #0f172a; --card: #1e293b; --accent: #38bdf8; --text: #f8fafc; --text-muted: #94a3b8; --border: #334155; }
+        body { font-family: system-ui, sans-serif; background: var(--bg); color: var(--text); margin: 0; padding: 20px; display: flex; justify-content: center; }
+        .wrapper { width: 100%; max-width: 550px; background: var(--card); border: 1px solid var(--border); padding: 30px; border-radius: 16px; box-sizing: border-box; }
+        .pan { color: var(--accent); font-size: 0.85rem; font-weight: 600; text-transform: uppercase; margin-bottom: 8px; display: block; }
+        h2 { font-size: 1.35rem; margin: 0 0 20px 0; }
+        .form-group { margin-bottom: 12px; }
+        label { display: block; font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; margin-bottom: 4px; }
+        input, select { width: 100%; padding: 12px; border-radius: 8px; border: 1px solid var(--border); background: #0f172a; color: #fff; box-sizing: border-box; font-size: 0.95rem; }
+        .btn-submit { width: 100%; padding: 14px; background: var(--accent); border: none; border-radius: 8px; color: #0f172a; font-weight: 700; cursor: pointer; text-transform: uppercase; margin-top: 10px; font-size: 1rem; }
+    </style>
+</head>
+<body>
+
+<div class="wrapper">
+    <div id="form-block">
+        <span class="pan">Formulario de Captura</span>
+        <h2>Complete los datos para recibir más información</h2>
+        ${fields.negocio ? '<div class="form-group"><label>Nombre del Comercio</label><input type="text" id="f_negocio"></div>' : ''}
+        ${fields.poblacion ? '<div class="form-group"><label>Población / Ciudad</label><input type="text" id="f_poblacion"></div>' : ''}
+        ${fields.contacto ? '<div class="form-group"><label>Persona de Contacto</label><input type="text" id="f_contacto"></div>' : ''}
+        ${fields.email ? '<div class="form-group"><label>Correo Electrónico</label><input type="email" id="f_email"></div>' : ''}
+        ${fields.telefono ? '<div class="form-group"><label>Teléfono / WhatsApp</label><input type="tel" id="f_telefono"></div>' : ''}
+        ${fields.preferencia ? '<div class="form-group"><label>Preferencia de Contacto</label><select id="f_preferencia"><option value="WhatsApp">WhatsApp</option><option value="Email">Email</option></select></div>' : ''}
+        <button class="btn-submit" id="send-btn" onclick="submitData()">Enviar Solicitud</button>
+    </div>
+</div>
+
+<script>
+    async function submitData() {
+        const btn = document.getElementById('send-btn');
+        const payload = {
+            negocio: document.getElementById('f_negocio') ? document.getElementById('f_negocio').value : '',
+            poblacion: document.getElementById('f_poblacion') ? document.getElementById('f_poblacion').value : '',
+            contacto: document.getElementById('f_contacto') ? document.getElementById('f_contacto').value : '',
+            email: document.getElementById('f_email') ? document.getElementById('f_email').value : '',
+            telefono: document.getElementById('f_telefono') ? document.getElementById('f_telefono').value : '',
+            preferencia: document.getElementById('f_preferencia') ? document.getElementById('f_preferencia').value : ''
+        };
+
+        btn.innerText = "ENVIANDO...";
+        btn.disabled = true;
+
+        try {
+            const res = await fetch('${webhook}', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+            if(res.ok) {
+                alert("¡Datos enviados correctamente!");
+                window.location.reload();
+            } else { throw new Error(); }
+        } catch {
+            alert("Error al enviar la información.");
+            btn.innerText = "Enviar Solicitud";
+            btn.disabled = false;
+        }
+    }
+<\/script>
+</body>
+</html>`;
+
+        document.getElementById('codigo-final').value = compiledHTML;
+        document.getElementById('resultado-container').style.display = 'block';
+    }
+</script>
+
+</body>
+</html>
